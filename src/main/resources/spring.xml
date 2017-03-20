@@ -10,9 +10,10 @@
         <constructor-arg value="John Smith"/>
     </bean>
 
-    <bean id="eventLogger" class="ru.vampa.spring.core.loggers.CacheFileEventLogger"
+    <bean id="eventLogger" class="ru.vampa.spring.core.loggers.ConsoleEventLogger"/>
+    <!--bean id="eventLogger" class="ru.vampa.spring.core.loggers.CacheFileEventLogger"
           init-method="init"
-          destroy-method="destroy"/>
+          destroy-method="destroy"/-->
 
     <bean id="app" class="ru.vampa.spring.core.App">
         <constructor-arg ref="client"/>
@@ -23,9 +24,9 @@
         <constructor-arg>
             <bean class="java.util.Date"/>
         </constructor-arg>
-        <constructor-arg>
-            <bean class="java.text.DateFormat" factory-method="getDateTimeInstance"/>
-        </constructor-arg>
+        <constructor-arg ref="dateFormat"/>
     </bean>
+
+    <bean id="dateFormat" class="java.text.DateFormat" factory-method="getDateTimeInstance"/>
 
 </beans>
