@@ -1,6 +1,6 @@
-package com.yet.spring.core.loggers;
+package ru.vampa.spring.core.loggers;
 
-import com.yet.spring.core.beans.Event;
+import ru.vampa.spring.core.beans.Event;
 
 /**
  * Created by vampa on 21.03.2017.

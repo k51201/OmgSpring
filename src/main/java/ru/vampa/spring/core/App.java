@@ -1,7 +1,7 @@
-package com.yet.spring.core;
+package ru.vampa.spring.core;
 
-import com.yet.spring.core.beans.Client;
-import com.yet.spring.core.loggers.EventLogger;
+import ru.vampa.spring.core.beans.Client;
+import ru.vampa.spring.core.loggers.EventLogger;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
