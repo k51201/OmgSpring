@@ -1,5 +1,6 @@
-package com.yet.spring.core.beans;
+package com.yet.spring.core;
 
+import com.yet.spring.core.beans.Client;
 import com.yet.spring.core.loggers.EventLogger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -13,7 +14,7 @@ public class App {
 
     private void logEvent(String msg) {
         String message = msg.replaceAll(client.getId(), client.getFullName());
-        eventLogger.logEvent(message);
+        eventLogger.logEvent(null);
     }
 
     public App(Client client, EventLogger eventLogger) {
