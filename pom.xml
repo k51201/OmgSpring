@@ -6,7 +6,7 @@
 
     <groupId>ru.vampa.spring</groupId>
     <artifactId>ru.vampa.spring.core</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>0.6-SNAPSHOT</version>
     <name>Simple Spring Application</name>
     <description>Trying to use Spring Framework</description>
 

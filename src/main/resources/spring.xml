@@ -5,15 +5,12 @@
             http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
 
+    <import resource="loggers.xml"/>
+
     <bean id="client" class="ru.vampa.spring.core.beans.Client">
         <constructor-arg value="1"/>
         <constructor-arg value="John Smith"/>
     </bean>
-
-    <bean id="eventLogger" class="ru.vampa.spring.core.loggers.ConsoleEventLogger"/>
-    <!--bean id="eventLogger" class="ru.vampa.spring.core.loggers.CacheFileEventLogger"
-          init-method="init"
-          destroy-method="destroy"/-->
 
     <bean id="app" class="ru.vampa.spring.core.App">
         <constructor-arg ref="client"/>
