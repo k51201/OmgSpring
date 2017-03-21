@@ -2,26 +2,37 @@ package ru.vampa.spring.core;
 
 import ru.vampa.spring.core.beans.Client;
 import ru.vampa.spring.core.beans.Event;
+import ru.vampa.spring.core.beans.EventType;
 import ru.vampa.spring.core.loggers.EventLogger;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.util.Map;
 
 /**
  * Created by vampa on 20.03.2017.
  */
 public class App {
     private Client client;
-    private EventLogger eventLogger;
+    private EventLogger defaultLogger;
+    private Map<EventType, EventLogger> loggers;
 
-    private void logEvent(Event event, String msg) {
+    private void logEvent(EventType type, Event event, String msg) {
         String message = msg.replaceAll(client.getId(), client.getFullName());
         event.setMsg(message);
-        eventLogger.logEvent(event);
+
+        EventLogger logger = loggers.get(type);
+        if (logger == null) {
+            logger = defaultLogger;
+        }
+
+        logger.logEvent(event);
     }
 
-    public App(Client client, EventLogger eventLogger) {
+    public App(Client client, EventLogger eventLogger, Map<EventType, EventLogger> loggers) {
         this.client = client;
-        this.eventLogger = eventLogger;
+        this.defaultLogger = eventLogger;
+        this.loggers = loggers;
     }
 
     public static void main(String[] args) {
@@ -30,10 +41,13 @@ public class App {
         App app = (App) ctx.getBean("app");
 
         Event event = ctx.getBean(Event.class);
-        app.logEvent(event, "Some event for 1");
+        app.logEvent(EventType.INFO, event, "Some event for 1");
 
         event = ctx.getBean(Event.class);
-        app.logEvent(event, "Some event for 2");
+        app.logEvent(EventType.ERROR, event, "Some event for 2");
+
+        event = ctx.getBean(Event.class);
+        app.logEvent(null, event, "Some event for 3");
 
         ctx.close();
     }

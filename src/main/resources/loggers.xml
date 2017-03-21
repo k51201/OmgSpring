@@ -5,7 +5,7 @@
             http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
 
-    <bean id="eventLogger" class="ru.vampa.spring.core.loggers.ConsoleEventLogger"/>
+    <bean id="consoleLogger" class="ru.vampa.spring.core.loggers.ConsoleEventLogger"/>
 
     <bean id="fileLogger" class="ru.vampa.spring.core.loggers.FileEventLogger" init-method="init">
         <constructor-arg value="target/events.log"/>
@@ -15,6 +15,15 @@
           destroy-method="destroy"
           parent="fileLogger">
         <constructor-arg index="1" value="5"/>
+    </bean>
+
+    <bean id="combinedLogger" class="ru.vampa.spring.core.loggers.CombinedEventLogger">
+        <constructor-arg>
+            <list>
+                <ref bean="consoleLogger"/>
+                <ref bean="fileLogger"/>
+            </list>
+        </constructor-arg>
     </bean>
 
 </beans>
