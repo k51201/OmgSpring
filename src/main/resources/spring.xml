@@ -38,7 +38,7 @@
 
     <bean id="app" class="ru.vampa.spring.core.App">
         <constructor-arg ref="client"/>
-        <constructor-arg ref="cacheFileLogger"/>
+        <constructor-arg ref="#{ T(ru.vampa.spring.core.beans.Event).isDay(8, 17) ? cacheFileLogger : consoleLogger }"/>
         <constructor-arg ref="loggerMap"/>
     </bean>
 

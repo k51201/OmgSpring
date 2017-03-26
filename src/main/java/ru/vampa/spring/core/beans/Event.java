@@ -1,6 +1,7 @@
 package ru.vampa.spring.core.beans;
 
 import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -26,6 +27,11 @@ public class Event {
 
     public String getMsg() {
         return msg;
+    }
+
+    public boolean isDay(int start, int end) {
+        int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+        return (start < hour) && (hour < end);
     }
 
     @Override
