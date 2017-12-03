@@ -16,6 +16,7 @@ public class App {
     private Client client;
     private EventLogger defaultLogger;
     private Map<EventType, EventLogger> loggers;
+    private String startupMessage;
 
     private void logEvent(EventType type, Event event, String msg) {
         String message = msg.replaceAll(client.getId(), client.getFullName());
@@ -40,6 +41,7 @@ public class App {
 
         App app = (App) ctx.getBean("app");
 
+        System.out.println(app.startupMessage);
         Client client = ctx.getBean(Client.class);
         System.out.println("Client says: " + client.getGreeting());
 
@@ -53,5 +55,13 @@ public class App {
         app.logEvent(null, event, "Some event for 3");
 
         ctx.close();
+    }
+
+    public EventLogger getDefaultLogger() {
+        return defaultLogger;
+    }
+
+    public void setStartupMessage(String startupMessage) {
+        this.startupMessage = startupMessage;
     }
 }

@@ -40,6 +40,11 @@
         <constructor-arg ref="client"/>
         <constructor-arg value="#{ T(ru.vampa.spring.core.beans.Event).isDay(8,17) ? cacheFileLogger : consoleLogger }"/>
         <constructor-arg ref="loggerMap"/>
+
+        <property name="startupMessage" value="#{ 'Hello, ' +
+         (systemProperties['os.name'].startsWith('Windows') ?
+         systemEnvironment['USERNAME'] : systemEnvironment['USER']) +
+          '! Default logger is ' + app.defaultLogger.name }"/>
     </bean>
 
     <bean id="event" class="ru.vampa.spring.core.beans.Event" scope="prototype">
