@@ -29,7 +29,7 @@ public class Event {
         return msg;
     }
 
-    public boolean isDay(int start, int end) {
+    public static boolean isDay(int start, int end) {
         int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
         return (start < hour) && (hour < end);
     }
