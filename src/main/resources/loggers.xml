@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="
             http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
 
-    <bean id="consoleLogger" class="ru.vampa.spring.core.loggers.ConsoleEventLogger"/>
+    <bean id="consoleLogger" class="ru.vampa.spring.core.loggers.ConsoleEventLogger" p:name="consoleLogger"/>
 
-    <bean id="fileLogger" class="ru.vampa.spring.core.loggers.FileEventLogger" init-method="init">
+    <bean id="fileLogger" class="ru.vampa.spring.core.loggers.FileEventLogger" init-method="init" p:name="fileLogger">
         <constructor-arg value="target/events.log"/>
     </bean>
 
-    <bean id="cacheFileLogger" class="ru.vampa.spring.core.loggers.CacheFileEventLogger"
+    <bean id="cacheFileLogger" class="ru.vampa.spring.core.loggers.CacheFileEventLogger"  p:name="cacheFileLogger"
           destroy-method="destroy"
           parent="fileLogger">
         <constructor-arg index="1" value="5"/>
     </bean>
 
-    <bean id="combinedLogger" class="ru.vampa.spring.core.loggers.CombinedEventLogger">
+    <bean id="combinedLogger" class="ru.vampa.spring.core.loggers.CombinedEventLogger" p:name="combinedLogger">
         <constructor-arg>
             <list>
                 <ref bean="consoleLogger"/>

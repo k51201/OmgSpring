@@ -10,7 +10,7 @@ import java.nio.charset.Charset;
 /**
  * Created by vampa on 21.03.2017.
  */
-public class FileEventLogger implements EventLogger {
+public class FileEventLogger extends AbstractLogger {
     private String fileName;
     private File file;
 
